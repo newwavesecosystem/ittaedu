@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Enrollment extends Model
+class Activity extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
-
-    function activity(){
-        $this->hasMany(Activity::class);
-    }
+    protected $guarded = [];
 }

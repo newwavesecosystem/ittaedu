@@ -49,5 +49,6 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function
 
     Route::get('mailtemplate', [MailTemplateController::class, 'index'])->name('admin.mailtemplate');
     Route::get('mailtemplate/{id}', [MailTemplateController::class, 'show'])->name('admin.mailtemplate.show');
+    Route::post('mailtemplate', [MailTemplateController::class, 'update'])->name('admin.mailtemplate.update');
 });
 

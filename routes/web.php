@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CoursesController;
+use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\EnrollmentController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,20 +28,26 @@ Route::post('enrollment', [EnrollmentController::class, 'store'])->name('enrollm
 //    return view('dashboard');
 //})->name('dashboardold');
 
+Route::get('login', function (){
+    return view('admin.login');
+})->name('login');
+
+Route::get('register', function (){
+    return redirect()->route('login');
+})->name('login');
 
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('dashboard', [\App\Http\Controllers\Admin\EnrollmentController::class, 'dashboard'])->name('dashboard');
 
     Route::get('enrollments', [\App\Http\Controllers\Admin\EnrollmentController::class, 'index'])->name('admin.enrollment');
 
-    Route::get('courses', function () {
-        return view('admin.courses');
-    })->name('admin.courses');
+    Route::get('courses', [CoursesController::class, 'index'])->name('admin.courses');
+    Route::get('courses-create', [CoursesController::class, 'create'])->name('admin.courses_create');
+    Route::post('courses-create', [CoursesController::class, 'store'])->name('admin.courses_create');
 
-    Route::get('mailtemplate', function () {
-        return view('admin.mailtemplate');
-    })->name('admin.mailtemplate');
+    Route::get('mailtemplate', [MailTemplateController::class, 'index'])->name('admin.mailtemplate');
+    Route::get('mailtemplate/{id}', [MailTemplateController::class, 'show'])->name('admin.mailtemplate.show');
 });
 

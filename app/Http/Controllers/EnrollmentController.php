@@ -281,11 +281,12 @@ class EnrollmentController extends Controller
             'country' => 'required|string',
             'state' => 'required|string',
             'county' => 'required|string',
-            'agent' => 'required|string',
-            'agent_resp_name' => 'required|string',
-            'agent_resp_email' => 'required|string',
+            'agent' => 'nullable|string',
+            'agent_resp_name' => 'nullable|string',
+            'agent_resp_email' => 'nullable|string',
             'course_id' => 'required|string',
             'suggested_start_date' => 'required|string',
+            'highest_education_level' => 'required|string',
         ]);
 
         if ($validator->fails()) {

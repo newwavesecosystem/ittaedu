@@ -3,41 +3,46 @@
 @section('contents')
     <div class="container-fluid p-0">
 
-        <h1 class="h3 mb-3"><strong>All</strong> Enrollment</h1>
+        <h1 class="h3 mb-3"><strong>All</strong> Courses</h1>
 
         <div class="row">
             <div class="col-12 col-lg-12 col-xxl-12 d-flex">
                 <div class="card flex-fill">
                     <div class="card-header">
 
-                        <h5 class="card-title mb-0">Enrollments</h5>
+                        <h5 class="card-title mb-0">Courses</h5>
+                        <a href="{{route('admin.courses_create')}}" class="btn btn-primary">Create New Course</a>
                     </div>
                     <table class="table table-hover my-0">
                         <thead>
                         <tr>
                             <th>SN</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Telephone</th>
-                            <th>Course</th>
-                            <th>Agent</th>
-                            <th>Country</th>
-                            <th>Status</th>
+                            <th>Title</th>
+                            <th>Duration</th>
+                            <th>Requirement</th>
+                            <th>Cost</th>
+                            <th>Tuition Fee</th>
+                            <th>Admission Fee</th>
+                            <th>Graduation Fee</th>
                             <th>Date Created</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Project Apollo</td>
-                            <td>hhfhf</td>
-                            <td class="d-none d-xl-table-cell">01/01/2021</td>
-                            <td class="d-none d-xl-table-cell">31/06/2021</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                            <td class="d-none d-md-table-cell"><button class="btn btn-primary">View</button></td>
-                        </tr>
+                            @foreach($datas as $data)
+                                <tr>
+                                    <td>{{$data->id}}</td>
+                                    <td>{{$data->title}}</td>
+                                    <td>{{$data->duration}}</td>
+                                    <td>{{$data->requirement}}</td>
+                                    <td>{{$data->cost}}</td>
+                                    <td>{{$data->tution_fee}}</td>
+                                    <td>{{$data->admission_fee}}</td>
+                                    <td>{{$data->graduation_fee}}</td>
+                                    <td>{{$data->created_at}}</td>
+                                    <td class="d-none d-md-table-cell"><button class="btn btn-primary">View</button></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

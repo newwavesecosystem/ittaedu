@@ -62,6 +62,11 @@
                             <label class="form-label">Email:</label>
                             <input type="email" name="email" class="form-control" placeholder="someone@gmail.com" required>
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Highest Education Level:</label>
+                            <input type="text" name="highest_education_level" class="form-control" placeholder="e.g High School" required>
+                        </div>
                     </div>
 
                 </div>
@@ -100,17 +105,17 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label class="form-label">Agent:</label>
-                            <input type="text" name="agent" class="form-control" placeholder="Enter Agent" required>
+                            <input type="text" name="agent" class="form-control" placeholder="Enter Agent">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Agent Reps Name:</label>
-                            <input type="text" name="agent_resp_name" class="form-control" placeholder="Enter Reps Name" required>
+                            <input type="text" name="agent_resp_name" class="form-control" placeholder="Enter Reps Name">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Agent Reps Email:</label>
-                            <input type="email" name="agent_resp_email" class="form-control" placeholder="agent@mail.com" required>
+                            <input type="email" name="agent_resp_email" class="form-control" placeholder="agent@mail.com">
                         </div>
                     </div>
 
@@ -137,8 +142,8 @@
                 </div>
 
                 <div class="text-center">
-                    <button class="btn btn-danger btn-lg">Reset Form</button>
-                    <button class="btn btn-success btn-lg">SUBMIT FORM</button>
+                    <button type="reset" class="btn btn-danger btn-lg">Reset Form</button>
+                    <button type="submit" class="btn btn-success btn-lg">SUBMIT FORM</button>
                 </div>
 
 

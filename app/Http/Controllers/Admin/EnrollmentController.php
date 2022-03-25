@@ -23,7 +23,7 @@ class EnrollmentController extends Controller
     }
 
     public function show($id){
-        $datas['data']=Enrollment::find($id);
+        $datas['data']=Enrollment::find($id)->with();
         return view('admin.enrollment', $datas);
     }
 

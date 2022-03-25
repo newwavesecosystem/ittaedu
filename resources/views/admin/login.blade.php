@@ -18,6 +18,7 @@
                         <div class="card-body">
                             <div class="m-sm-4">
                                 <form action="{{route('login')}}" method="post">
+                                    @csrf
                                     <div class="mb-3">
                                         <label class="form-label">Email</label>
                                         <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
@@ -31,7 +32,7 @@
                                     </div>
                                     <div>
                                         <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked>
+                                            <input class="form-check-input" type="checkbox" value="remember-me" name="remember" checked>
                                             <span class="form-check-label">
               Remember me next time
             </span>

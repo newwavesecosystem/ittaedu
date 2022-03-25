@@ -48,7 +48,7 @@
 
                                 </td>
                                 <td class="d-none d-md-table-cell">{{$data->created_at}}</td>
-                                <td class="d-none d-md-table-cell"><a class="btn btn-primary">View</a></td>
+                                <td class="d-none d-md-table-cell"><a href="{{route('admin.enrollment.show', $data->id)}}" class="btn btn-primary">View</a></td>
                             </tr>
                         @endforeach
                         </tbody>

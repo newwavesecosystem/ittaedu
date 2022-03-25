@@ -22,4 +22,10 @@ class EnrollmentController extends Controller
         return view('admin.dashboard', $datas);
     }
 
+    public function show($id){
+        $datas['data']=Enrollment::find($id);
+        return view('admin.enrollment', $datas);
+    }
+
+
 }

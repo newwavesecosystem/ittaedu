@@ -42,6 +42,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function
     Route::get('dashboard', [\App\Http\Controllers\Admin\EnrollmentController::class, 'dashboard'])->name('dashboard');
 
     Route::get('enrollments', [\App\Http\Controllers\Admin\EnrollmentController::class, 'index'])->name('admin.enrollment');
+    Route::get('enrollment/{id}', [\App\Http\Controllers\Admin\EnrollmentController::class, 'show'])->name('admin.enrollment.show');
 
     Route::get('courses', [CoursesController::class, 'index'])->name('admin.courses');
     Route::get('courses-create', [CoursesController::class, 'create'])->name('admin.courses_create');

@@ -17,7 +17,7 @@
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="{{route('admin.enrollment')}}">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Enrollment</span>
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Enrollments</span>
                 </a>
             </li>
 

@@ -31,7 +31,7 @@
             </div>
         @endif
 
-        <form class="{{route('admin.courses_create')}}" method="POST">
+        <form action="{{route('admin.mailtemplate.update')}}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-12 col-lg-12">
@@ -42,6 +42,7 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label class="form-label">Sender:</label>
+                            <input type="hidden" name="id" class="form-control" value="{{$data->id}}">
                             <input type="text" name="sender" class="form-control" placeholder="Enter Sender" value="{{$data->sender}}" required>
                         </div>
 
@@ -68,6 +69,10 @@
                                 <option value="0" @if($data->status ==0) selected @endif>Inactive</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div class="text-center mb-4">
+                        <button type="submit" class="btn btn-success btn-lg">Update Template</button>
                     </div>
 
                 </div>

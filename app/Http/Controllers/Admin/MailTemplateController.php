@@ -37,6 +37,14 @@ class MailTemplateController extends Controller
                 ->withInput();
         }
 
+        $et=EmailTemplate::find($input['id']);
+        $et->sender=$input['sender'];
+        $et->subject=$input['subject'];
+        $et->body=$input['body'];
+        $et->css=$input['css'];
+        $et->status=$input['status'];
+        $et->save();
+
         return redirect()->route('admin.mailtemplate')->with(['success' => 'Email Template updated successfully']);
     }
 }

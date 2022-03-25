@@ -32,9 +32,9 @@ Route::get('login', function (){
     return view('admin.login');
 })->name('login');
 
-Route::get('register', function (){
-    return redirect()->route('login');
-})->name('login');
+//Route::get('register', function (){
+//    return redirect()->route('login');
+//})->name('login');
 
 
 Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function () {

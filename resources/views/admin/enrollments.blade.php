@@ -21,7 +21,6 @@
                             <th>Course</th>
                             <th>Agent</th>
                             <th>Country</th>
-                            <th>Status</th>
                             <th>Date Created</th>
                             <th>Action</th>
                         </tr>
@@ -35,16 +34,6 @@
                                 <td class="d-none d-xl-table-cell">{{$data->course->title}}</td>
                                 <td><span class="badge bg-success">{{$data->agent}}</span></td>
                                 <td class="d-none d-md-table-cell">{{$data->country}}</td>
-                                <td class="d-none d-md-table-cell">
-                                    @if($data->status==1)
-                                        <span class="badge bg-success">Success</span>
-                                    @elseif($data->status==0)
-                                        <span class="badge bg-warning">Pending</span>
-                                    @else
-                                        <span class="badge bg-warning">oK</span>
-                                    @endif
-
-                                </td>
                                 <td class="d-none d-md-table-cell">{{$data->created_at}}</td>
                                 <td class="d-none d-md-table-cell"><a href="{{route('admin.enrollment.show', $data->id)}}" class="btn btn-primary">View</a></td>
                             </tr>

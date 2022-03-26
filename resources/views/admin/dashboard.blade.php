@@ -97,7 +97,6 @@
                             <th>Telephone</th>
                             <th class="d-none d-xl-table-cell">Course</th>
                             <th class="d-none d-xl-table-cell">Suggested Start Date</th>
-                            <th>Status</th>
                             <th class="d-none d-md-table-cell">Agent</th>
                         </tr>
                         </thead>
@@ -108,15 +107,6 @@
                                 <td>{{$data->tel}}</td>
                                 <td class="d-none d-xl-table-cell">{{$data->course_id}}</td>
                                 <td class="d-none d-xl-table-cell">{{$data->suggested_start_date}}</td>
-                                <td>
-                                    @if($data->status==1)
-                                        <span class="badge bg-success">Success</span>
-                                    @elseif($data->status==0)
-                                        <span class="badge bg-warning">Pending</span>
-                                    @else
-                                        <span class="badge bg-warning">oK</span>
-                                    @endif
-                                </td>
                                 <td class="d-none d-md-table-cell">{{$data->agent}}</td>
                             </tr>
                         @endforeach

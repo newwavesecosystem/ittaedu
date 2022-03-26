@@ -39,7 +39,7 @@ Route::get('register', function (){
 
 
 Route::get('admin/atti/register', function (){
-    return view('admin.register');
+    return view('auth.register');
 })->name('login');
 
 

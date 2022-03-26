@@ -35,12 +35,12 @@ Route::get('login', function (){
 
 Route::get('register', function (){
 //    return redirect()->route('login');
-})->name('login');
+})->name('register');
 
 
 Route::get('admin/atti/register', function (){
     return view('auth.register');
-})->name('login');
+})->name('registerAdmin');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {

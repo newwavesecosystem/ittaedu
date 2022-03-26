@@ -40,20 +40,15 @@ class EnrollmentAcknowledgeMail extends Mailable implements ShouldQueue
 
         $emailTemplate=EmailTemplate::where("type",$type)->first();
 
-        function mailTemplateReplace($body, $code, $with){
-            return str_replace ($code, $with, $body);
-        }
-
-
         if($emailTemplate) {
             if ($emailTemplate->status == 1) {
                 $etb=$emailTemplate->body;
 
-                $emt=mailTemplateReplace($etb, "{{name}}", $enrollment->name);
-                $emt=mailTemplateReplace($emt, "{{email}}", $enrollment->email);
-                $emt=mailTemplateReplace($emt, "{{tel}}", $enrollment->tel);
-                $emt=mailTemplateReplace($emt, "{{todaysdate}}", Carbon::now()->format('Y-m-d'));
-                $emt=mailTemplateReplace($emt, "{{4weeksdate}}", Carbon::now()->addWeekdays(4)->format('Y-m-d'));
+                $emt=$this->mailTemplateReplace($etb, "{{name}}", $enrollment->name);
+                $emt=$this->mailTemplateReplace($emt, "{{email}}", $enrollment->email);
+                $emt=$this->mailTemplateReplace($emt, "{{tel}}", $enrollment->tel);
+                $emt=$this->mailTemplateReplace($emt, "{{todaysdate}}", Carbon::now()->format('Y-m-d'));
+                $emt=$this->mailTemplateReplace($emt, "{{4weeksdate}}", Carbon::now()->addWeekdays(4)->format('Y-m-d'));
 
                 return $this->from($emailTemplate->sender ?? "info@newwavesecosystem.com")
                     ->subject($emailTemplate->subject)
@@ -64,4 +59,9 @@ class EnrollmentAcknowledgeMail extends Mailable implements ShouldQueue
             }
         }
     }
+
+    function mailTemplateReplace($body, $code, $with){
+        return str_replace ($code, $with, $body);
+    }
+
 }

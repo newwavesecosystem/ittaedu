@@ -9,28 +9,6 @@
         </div>
 
 
-        @if ($errors->any())
-            <div class="alert alert-danger bg-danger py-4 px-4">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        @if (session('success'))
-            <div class="alert alert-success bg-success py-4 px-4">
-                {!! session('success') !!}
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="alert alert-danger bg-danger py-4 px-4">
-                {{ session('error') }}
-            </div>
-        @endif
-
         <form class="{{route('admin.courses_create')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">

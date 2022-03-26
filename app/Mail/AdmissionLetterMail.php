@@ -48,8 +48,8 @@ class AdmissionLetterMail extends Mailable
 
         Activity::create([
             "enrollment_id" => $enrollment->id,
-            "type" =>"Admission Letter sent",
-            "log" =>$pdfurl,
+            "type" =>"Admission Letter sent to",
+            "log" =>"admission",
             "act_by" =>"system"
         ]);
 

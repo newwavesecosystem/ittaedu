@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class EnrollmentController extends Controller
 {
     public function index(){
-        $datas['datas']=Enrollment::get();
+        $datas['datas']=Enrollment::with('course')->get();
         return view('admin.enrollments', $datas);
     }
 

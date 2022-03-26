@@ -19,10 +19,6 @@
                         <h5 class="card-title mb-0">{{$data->name}}</h5>
                         <div class="text-muted mb-2">{{$data->tel}}</div>
                         <div class="text-muted mb-2">{{$data->email}}</div>
-
-                        <div>
-                            <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Mark Completed</a>
-                        </div>
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
@@ -59,13 +55,16 @@
                             <div class="d-flex align-items-start">
                                 <div class="flex-grow-1">
                                     <small class="float-end text-navy">{{\Carbon\Carbon::parse($activity->created_at)->diffForHumans()}}</small>
-                                    <strong>{{$activity->act_by}}</strong> {{$activity->type}} <strong>{{$data->name}}</strong><br />
+                                    {{$activity->type}} <strong>{{$data->name}}</strong> by <strong>{{$activity->act_by}}</strong><br />
                                     <small class="text-muted">{{\Carbon\Carbon::parse($activity->created_at)->format('Y-m-d')}}</small><br />
 
                                 </div>
                             </div>
+                            <div>
+                                <a class="btn btn-primary btn-sm" href="{{route('admin.Activity.resend', $data->id)}}"><span data-feather="message-square"></span> Re-Send</a>
+                            </div>
+                            <hr />
                         @endforeach
-                        <hr />
 
 {{--                        <div class="d-grid">--}}
 {{--                            <a href="#" class="btn btn-primary">Load more</a>--}}

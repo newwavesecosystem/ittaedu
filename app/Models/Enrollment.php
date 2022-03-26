@@ -14,4 +14,8 @@ class Enrollment extends Model
     function activity(){
         return $this->hasMany(Activity::class);
     }
+
+    function course(){
+        return $this->belongsTo(Course::class);
+    }
 }

@@ -33,11 +33,11 @@
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Admins</span>
-                </a>
-            </li>
+{{--            <li class="sidebar-item">--}}
+{{--                <a class="sidebar-link" href="#">--}}
+{{--                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Admins</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
 
         </ul>
 

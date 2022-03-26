@@ -32,15 +32,14 @@ Route::get('login', function (){
     return view('admin.login');
 })->name('login');
 
-//Route::get('register', function (){
+Route::get('register', function (){
 //    return redirect()->route('login');
-//})->name('login');
+})->name('login');
 
-Route::get('testin', function (){
-    $doc=new \App\Http\Controllers\DocumentController();
-    $doc->convertWordToPDFChangable(\App\Models\Enrollment::find(1),"CPhT-Template-letter-of-admission.docx");
-    return "done";
-})->name('testin');
+
+Route::get('admin/atti/register', function (){
+    return view('admin.register');
+})->name('login');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -58,6 +57,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('mailtemplate', [MailTemplateController::class, 'index'])->name('admin.mailtemplate');
         Route::get('mailtemplate/{id}', [MailTemplateController::class, 'show'])->name('admin.mailtemplate.show');
         Route::post('mailtemplate', [MailTemplateController::class, 'update'])->name('admin.mailtemplate.update');
+
+        Route::get('resend/{id}', [\App\Http\Controllers\Admin\ActivityController::class, 'resend'])->name('admin.Activity.resend');
     });
 });
 

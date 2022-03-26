@@ -307,9 +307,13 @@ class EnrollmentController extends Controller
             "act_by" =>"system"
         ]);
 
-//        Mail::to($input['email'])->later(now()->addSeconds(2), new EnrollmentAcknowledgeMail($en));
+        try {
+            Mail::to($input['email'])->later(now()->addSeconds(2), new EnrollmentAcknowledgeMail($en));
 
-        Mail::to($input['email'])->later(now()->addSeconds(10), new AdmissionLetterMail($en));
+            Mail::to($input['email'])->later(now()->addSeconds(10), new AdmissionLetterMail($en));
+        }catch (\Exception $e){
+
+        }
 
         return redirect()->route('enrollment')->with(['success' => "Your enrollment was successful. You will receive acknowledge mail shortly."]);
 

@@ -18,7 +18,6 @@
                             <th>SN</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Telephone</th>
                             <th>Course</th>
                             <th>Agent</th>
                             <th>Country</th>
@@ -33,7 +32,6 @@
                                 <td>{{$data->id}}</td>
                                 <td>{{$data->name}}</td>
                                 <td>{{$data->email}}</td>
-                                <td class="d-none d-xl-table-cell">{{$data->tel}}</td>
                                 <td class="d-none d-xl-table-cell">{{$data->course_id}}</td>
                                 <td><span class="badge bg-success">{{$data->agent}}</span></td>
                                 <td class="d-none d-md-table-cell">{{$data->country}}</td>

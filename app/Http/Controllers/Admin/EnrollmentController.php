@@ -24,6 +24,7 @@ class EnrollmentController extends Controller
 
     public function show($id){
         $datas['data']=Enrollment::find($id);
+        $datas['data']->activity;
         return view('admin.enrollment', $datas);
     }
 

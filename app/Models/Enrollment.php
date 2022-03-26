@@ -12,6 +12,6 @@ class Enrollment extends Model
     protected $guarded=[];
 
     function activity(){
-        $this->hasMany(Activity::class);
+        return $this->hasMany(Activity::class);
     }
 }

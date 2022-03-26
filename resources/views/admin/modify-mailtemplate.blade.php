@@ -53,12 +53,9 @@
 
                         <div class="mb-3">
                             <label class="form-label">Body:</label>
-                            <textarea class="form-control" name="body" rows="5" required>{{$data->body}}</textarea>
-                        </div>
+                            <textarea class="form-control" name="body" rows="8" required>{{$data->body}}</textarea>
 
-                        <div class="mb-3">
-                            <label class="form-label">CSS:</label>
-                            <textarea class="form-control" name="css" rows="5" required>{{$data->css}}</textarea>
+                            <span class="text-danger">Available Keywords: {{$data->codes}}</span>
                         </div>
 
                         <div class="mb-3">

@@ -37,19 +37,21 @@ Route::get('login', function (){
 //})->name('login');
 
 
-Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('dashboard', [\App\Http\Controllers\Admin\EnrollmentController::class, 'dashboard'])->name('dashboard');
 
-    Route::get('enrollments', [\App\Http\Controllers\Admin\EnrollmentController::class, 'index'])->name('admin.enrollment');
-    Route::get('enrollment/{id}', [\App\Http\Controllers\Admin\EnrollmentController::class, 'show'])->name('admin.enrollment.show');
+    Route::prefix('admin')->group(function () {
+        Route::get('enrollments', [\App\Http\Controllers\Admin\EnrollmentController::class, 'index'])->name('admin.enrollment');
+        Route::get('enrollment/{id}', [\App\Http\Controllers\Admin\EnrollmentController::class, 'show'])->name('admin.enrollment.show');
 
-    Route::get('courses', [CoursesController::class, 'index'])->name('admin.courses');
-    Route::get('courses-create', [CoursesController::class, 'create'])->name('admin.courses_create');
-    Route::post('courses-create', [CoursesController::class, 'store'])->name('admin.courses_create');
+        Route::get('courses', [CoursesController::class, 'index'])->name('admin.courses');
+        Route::get('courses-create', [CoursesController::class, 'create'])->name('admin.courses_create');
+        Route::post('courses-create', [CoursesController::class, 'store'])->name('admin.courses_create');
 
-    Route::get('mailtemplate', [MailTemplateController::class, 'index'])->name('admin.mailtemplate');
-    Route::get('mailtemplate/{id}', [MailTemplateController::class, 'show'])->name('admin.mailtemplate.show');
-    Route::post('mailtemplate', [MailTemplateController::class, 'update'])->name('admin.mailtemplate.update');
+        Route::get('mailtemplate', [MailTemplateController::class, 'index'])->name('admin.mailtemplate');
+        Route::get('mailtemplate/{id}', [MailTemplateController::class, 'show'])->name('admin.mailtemplate.show');
+        Route::post('mailtemplate', [MailTemplateController::class, 'update'])->name('admin.mailtemplate.update');
+    });
 });
 

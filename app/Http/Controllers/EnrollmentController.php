@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\EnrollmentAcknowledgeMail;
+use App\Models\Activity;
 use App\Models\Course;
 use App\Models\Enrollment;
 use Illuminate\Http\Request;
@@ -298,7 +299,15 @@ class EnrollmentController extends Controller
 
         $en=Enrollment::create($input);
 
-        Mail::to($input['email'])->later(now()->addSeconds(2), new EnrollmentAcknowledgeMail($en));
+        Activity::create([
+            "enrollment_id" => $en->id,
+            "type" =>"Acknowledgement mail sent",
+            "log" =>" ",
+            "act_by" =>"system"
+        ]);
+
+        Mail::to($input['email'])->later(now()->addSeconds(2), new EnrollmentAcknowledgeMail($en, "acknowledgemail"));
+        Mail::to($input['email'])->later(now()->addSeconds(10), new EnrollmentAcknowledgeMail($en, "admission"));
 
         return redirect()->route('enrollment')->with(['success' => "Your enrollment was successful. You will receive acknowledge mail shortly."]);
 

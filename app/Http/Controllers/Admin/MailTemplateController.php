@@ -27,7 +27,6 @@ class MailTemplateController extends Controller
             'sender' => 'required|string',
             'subject' => 'required|string',
             'body' => 'required|string',
-            'css' => 'required|string',
             'status' => 'required|string'
         ]);
 
@@ -41,7 +40,6 @@ class MailTemplateController extends Controller
         $et->sender=$input['sender'];
         $et->subject=$input['subject'];
         $et->body=$input['body'];
-        $et->css=$input['css'];
         $et->status=$input['status'];
         $et->save();
 

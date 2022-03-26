@@ -55,27 +55,27 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label">Name:</label>
+                            <label class="form-label">Name:<span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Address:</label>
+                            <label class="form-label">Address:<span class="text-danger">*</span></label>
                             <textarea class="form-control" name="address" rows="2" placeholder="Enter Address" required></textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Tel:</label>
+                            <label class="form-label">Tel:<span class="text-danger">*</span></label>
                             <input type="tel" name="tel" class="form-control" placeholder="+234 7000" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Email:</label>
+                            <label class="form-label">Email:<span class="text-danger">*</span></label>
                             <input type="email" name="email" class="form-control" placeholder="someone@gmail.com" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Highest Education Level:</label>
+                            <label class="form-label">Highest Education Level:<span class="text-danger">*</span></label>
                             <input type="text" name="highest_education_level" class="form-control" placeholder="e.g High School" required>
                         </div>
                     </div>
@@ -88,19 +88,19 @@
                     </div>
                     <div class="card-body">
                         <select name="country" class="form-select mb-3" required>
-                            <option selected>Select Country</option>
+                            <option selected>Select Country<span class="text-danger">*</span></option>
                             @foreach($countries as $country)
                                 <option>{{$country}}</option>
                             @endforeach
                         </select>
 
                         <select name="state" class="form-select mb-3" required>
-                            <option selected>Select State</option>
+                            <option selected>Select State<span class="text-danger">*</span></option>
                             <option>California</option>
                         </select>
 
                         <select name="county" class="form-select mb-3" required>
-                            <option selected>Select County</option>
+                            <option selected>Select County<span class="text-danger">*</span></option>
                             <option>Bush</option>
                         </select>
                     </div>
@@ -138,13 +138,14 @@
                     </div>
                     <div class="card-body">
                         <select name="course_id" class="form-select mb-3" required>
+                            <option value="">Choose a Course<span class="text-danger">*</span></option>
                             @foreach($courses as $course)
                                 <option value="{{$course->id}}">{{$course->title}}</option>
                             @endforeach
                         </select>
 
                         <div class="mb-3">
-                            <label class="form-label">Suggested Start Date:</label>
+                            <label class="form-label">Suggested Start Date:<span class="text-danger">*</span></label>
                             <input type="date" name="suggested_start_date" class="form-control" required>
                         </div>
                     </div>

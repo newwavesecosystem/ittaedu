@@ -129,7 +129,7 @@
                         <select name="course_id" class="form-select mb-3" required>
                             <option selected>Select Course</option>
                             @foreach($courses as $course)
-                                <option>{{$course->title}}</option>
+                                <option value="{{$course->id}}">{{$course->title}}</option>
                             @endforeach
                         </select>
 

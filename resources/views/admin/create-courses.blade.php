@@ -31,7 +31,7 @@
             </div>
         @endif
 
-        <form class="{{route('admin.courses_create')}}" method="POST">
+        <form class="{{route('admin.courses_create')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
             <div class="col-12 col-lg-6">
@@ -41,44 +41,15 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label">Title:</label>
-                            <input type="text" name="title" class="form-control" placeholder="Enter Title" required>
+                            <label class="form-label">Course Name: <span class="text-danger">*</span></label>
+                            <input type="text" name="title" class="form-control" placeholder="Enter Course Name" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Duration:</label>
-                            <input type="tel" name="duration" class="form-control" placeholder="Enter Duration" required>
+                            <label class="form-label">Course Code: <span class="text-danger">*</span></label>
+                            <input type="tel" name="coursecode" class="form-control" placeholder="Enter Course Code" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Requirement:</label>
-                            <textarea class="form-control" name="requirement" rows="5" placeholder="Enter Requirements" required></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Books:</label>
-                            <textarea class="form-control" name="books" rows="5" placeholder="Enter Books" required></textarea>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Other Information</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label class="form-label">Other Requirement:</label>
-                            <textarea class="form-control" name="other_requirement" rows="3" placeholder="Enter Requirement" required></textarea>
-                        </div>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label class="form-label">Others:</label>
-                            <textarea class="form-control" name="other" rows="3" placeholder="" required></textarea>
-                        </div>
                     </div>
 
                 </div>
@@ -89,33 +60,15 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title mb-0">Fee</h5>
+                        <h5 class="card-title mb-0">Upload template</h5>
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label">Total Program Cost:</label>
-                            <input type="text" name="cost" class="form-control" placeholder="Enter Program cost" required>
+                            <label class="form-label">File:<span class="text-danger">* doc or docx only</span></label>
+                            <input type="file" name="template" class="form-control" placeholder="Upload File" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Tuition Fee:</label>
-                            <input type="text" name="tution_fee" class="form-control" placeholder="Enter Tuition Fee" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Admission Fee:</label>
-                            <input type="text" name="admission_fee" class="form-control" placeholder="Enter Admission Fee" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Graduation Fee:</label>
-                            <input type="text" name="graduation_fee" class="form-control" placeholder="Enter Graduation Fee" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Other Fee:</label>
-                            <input type="text" name="other_fee" class="form-control" placeholder="0.00" required>
-                        </div>
+                        <span class="text-success">The system automatically replace the keywords with applicant information in your template: ${name} ${todaysdate} ${lastname} ${email} ${coursename} ${tel} ${4weeksdate} </span>
                     </div>
                 </div>
 

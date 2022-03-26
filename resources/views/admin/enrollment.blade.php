@@ -58,7 +58,7 @@
                         @foreach($data->activity as $activity)
                             <div class="d-flex align-items-start">
                                 <div class="flex-grow-1">
-                                    <small class="float-end text-navy">5m ago</small>
+                                    <small class="float-end text-navy">{{\Carbon\Carbon::parse($activity->created_at)->diffForHumans()}}</small>
                                     <strong>{{$activity->act_by}}</strong> {{$activity->type}} <strong>{{$data->name}}</strong><br />
                                     <small class="text-muted">{{\Carbon\Carbon::parse($activity->created_at)->format('Y-m-d')}}</small><br />
 

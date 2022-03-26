@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdmissionLetterMail;
 use App\Mail\EnrollmentAcknowledgeMail;
 use App\Models\Activity;
 use App\Models\Course;
@@ -285,7 +286,7 @@ class EnrollmentController extends Controller
             'agent' => 'nullable|string',
             'agent_resp_name' => 'nullable|string',
             'agent_resp_email' => 'nullable|string',
-            'course_id' => 'required|string',
+            'course_id' => 'required',
             'suggested_start_date' => 'required|string',
             'highest_education_level' => 'required|string',
         ]);
@@ -306,8 +307,9 @@ class EnrollmentController extends Controller
             "act_by" =>"system"
         ]);
 
-        Mail::to($input['email'])->later(now()->addSeconds(2), new EnrollmentAcknowledgeMail($en, "acknowledgemail"));
-        Mail::to($input['email'])->later(now()->addSeconds(10), new EnrollmentAcknowledgeMail($en, "admission"));
+//        Mail::to($input['email'])->later(now()->addSeconds(2), new EnrollmentAcknowledgeMail($en));
+
+        Mail::to($input['email'])->later(now()->addSeconds(10), new AdmissionLetterMail($en));
 
         return redirect()->route('enrollment')->with(['success' => "Your enrollment was successful. You will receive acknowledge mail shortly."]);
 

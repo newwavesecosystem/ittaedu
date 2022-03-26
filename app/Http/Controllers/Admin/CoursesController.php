@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 
 class CoursesController extends Controller
 {
@@ -27,15 +29,8 @@ class CoursesController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
-            'duration' => 'required|string',
-            'requirement' => 'required|string',
-            'books' => 'required|string',
-            'other_requirement' => 'required|string',
-            'tution_fee' => 'required|string',
-            'admission_fee' => 'required|string',
-            'graduation_fee' => 'required|string',
-            'other_fee' => 'nullable|string',
-            'other' => 'nullable|string',
+            'coursecode' => 'required|string',
+            'template' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -43,6 +38,10 @@ class CoursesController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        $url = Storage::put('course_template', $request->template);
+
+        $input['template']=$url;
 
         Course::create($input);
 

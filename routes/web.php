@@ -36,6 +36,12 @@ Route::get('login', function (){
 //    return redirect()->route('login');
 //})->name('login');
 
+Route::get('testin', function (){
+    $doc=new \App\Http\Controllers\DocumentController();
+    $doc->convertWordToPDFChangable(\App\Models\Enrollment::find(1),"CPhT-Template-letter-of-admission.docx");
+    return "done";
+})->name('testin');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 

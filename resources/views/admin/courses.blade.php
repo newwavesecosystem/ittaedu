@@ -18,14 +18,8 @@
                         <tr>
                             <th>SN</th>
                             <th>Title</th>
-                            <th>Duration</th>
-                            <th>Requirement</th>
-                            <th>Cost</th>
-                            <th>Tuition Fee</th>
-                            <th>Admission Fee</th>
-                            <th>Graduation Fee</th>
+                            <th>Course</th>
                             <th>Date Created</th>
-                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -33,14 +27,8 @@
                                 <tr>
                                     <td>{{$data->id}}</td>
                                     <td>{{$data->title}}</td>
-                                    <td>{{$data->duration}}</td>
-                                    <td>{{$data->requirement}}</td>
-                                    <td>{{$data->cost}}</td>
-                                    <td>{{$data->tution_fee}}</td>
-                                    <td>{{$data->admission_fee}}</td>
-                                    <td>{{$data->graduation_fee}}</td>
+                                    <td>{{$data->coursecode}}</td>
                                     <td>{{$data->created_at}}</td>
-                                    <td class="d-none d-md-table-cell"><button class="btn btn-primary">View</button></td>
                                 </tr>
                             @endforeach
                         </tbody>

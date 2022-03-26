@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use App\Models\Activity;
+use App\Models\Course;
 use App\Models\EmailTemplate;
 use App\Models\Enrollment;
 use Carbon\Carbon;
@@ -10,7 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EnrollmentAcknowledgeMail extends Mailable implements ShouldQueue
+class AdmissionLetterMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -25,6 +27,7 @@ class EnrollmentAcknowledgeMail extends Mailable implements ShouldQueue
         $this->enrollment=$enrollment;
     }
 
+
     /**
      * Build the message.
      *
@@ -32,10 +35,23 @@ class EnrollmentAcknowledgeMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-
         $enrollment=$this->enrollment;
 
-        $emailTemplate=EmailTemplate::where("type","acknowledgemail")->first();
+        $course=Course::find($enrollment->course_id);
+
+
+        $emailTemplate=EmailTemplate::where("type","admission")->first();
+
+
+        $doc=new \App\Http\Controllers\DocumentController();
+        $pdfurl=$doc->convertWordToPDFChangable($enrollment,$course->template);
+
+        Activity::create([
+            "enrollment_id" => $enrollment->id,
+            "type" =>"Admission Letter sent",
+            "log" =>$pdfurl,
+            "act_by" =>"system"
+        ]);
 
         if($emailTemplate) {
             if ($emailTemplate->status == 1) {
@@ -52,7 +68,7 @@ class EnrollmentAcknowledgeMail extends Mailable implements ShouldQueue
                     ->view('emails.mailrender', [
                         'mailStyle' => $emailTemplate->css,
                         'mailBody' => $emt
-                    ]);
+                    ])->attach($pdfurl);
             }
         }
     }

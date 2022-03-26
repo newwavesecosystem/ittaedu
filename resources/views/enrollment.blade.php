@@ -1,6 +1,17 @@
 @extends('layouts.applicant')
 
 @section('contents')
+    <div class="row mb-4">
+        <div class="col4">
+            <img src="{{asset('assets/img/Itta1.png')}}" height="90px" />
+        </div>
+
+        <div class="col8">
+            ENROLLMENT SUBMISSION SYSTEM
+        </div>
+
+    </div>
+
     <div class="container-fluid p-0">
 
         <div class="mb-3">

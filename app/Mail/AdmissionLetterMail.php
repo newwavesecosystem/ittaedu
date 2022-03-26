@@ -46,13 +46,6 @@ class AdmissionLetterMail extends Mailable
         $doc=new \App\Http\Controllers\DocumentController();
         $pdfurl=$doc->convertWordToPDFChangable($enrollment,$course->template);
 
-        Activity::create([
-            "enrollment_id" => $enrollment->id,
-            "type" =>"Admission Letter sent to",
-            "log" =>"admission",
-            "act_by" =>"system"
-        ]);
-
         if($emailTemplate) {
             if ($emailTemplate->status == 1) {
                 $etb=$emailTemplate->body;

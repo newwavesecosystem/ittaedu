@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CoursesController;
 use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\EnrollmentController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('mailtemplate', [MailTemplateController::class, 'update'])->name('admin.mailtemplate.update');
 
         Route::get('resend/{id}', [\App\Http\Controllers\Admin\ActivityController::class, 'resend'])->name('admin.Activity.resend');
+
+        Route::get('/logouts', [AuthenticatedSessionController::class, 'destroy'])->name('admin.logout');
     });
 });
 

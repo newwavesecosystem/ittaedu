@@ -18,15 +18,17 @@ class ActivityController extends Controller
             return back()->with(['danger' => 'Invalid Activity name']);
         }
 
-        Activity::create([
+        $ac=Activity::create([
             "enrollment_id" => $activity->enrollment_id,
-            "type" =>"Initiate resend ".$activity->type,
-            "log" =>"resend",
+            "type" =>$activity->type,
+            "log" =>"",
             "act_by" =>Auth::user()->name
         ]);
 
         try {
             if ($activity->log == "admission") {
+                $ac->log="admission";
+                $ac->save();
                 Mail::to($activity->enrollment->email)->later(now()->addSeconds(10), new AdmissionLetterMail($activity->enrollment));
             } else {
                 Mail::to($activity->enrollment->email)->later(now()->addSeconds(2), new EnrollmentAcknowledgeMail($activity->enrollment));

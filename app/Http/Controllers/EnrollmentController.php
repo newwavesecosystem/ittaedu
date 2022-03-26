@@ -302,13 +302,20 @@ class EnrollmentController extends Controller
 
         Activity::create([
             "enrollment_id" => $en->id,
-            "type" =>"Acknowledgement mail sent",
+            "type" =>"Acknowledgement mail sent to",
             "log" =>" ",
             "act_by" =>"system"
         ]);
 
         try {
             Mail::to($input['email'])->later(now()->addSeconds(2), new EnrollmentAcknowledgeMail($en));
+
+            Activity::create([
+                "enrollment_id" => $en->id,
+                "type" =>"Admission Letter sent to",
+                "log" =>"admission",
+                "act_by" =>"system"
+            ]);
 
             Mail::to($input['email'])->later(now()->addSeconds(10), new AdmissionLetterMail($en));
         }catch (\Exception $e){

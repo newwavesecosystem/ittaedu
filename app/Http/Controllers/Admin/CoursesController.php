@@ -54,7 +54,7 @@ class CoursesController extends Controller
     {
         $datas['data']=Course::find($id);
 
-        return view('admin.create-courses', $datas);
+        return view('admin.modify-courses', $datas);
     }
 
     /**
@@ -68,16 +68,44 @@ class CoursesController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|string',
+            'title' => 'required|string',
+            'coursecode' => 'required|string',
+            'template' => 'nullable',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $id=$input['id'];
+
+        $f=Course::find($id);
+
+        if(!$f){
+            return redirect()->route('admin.courses')->with(['danger' => "Course not found"]);
+        }
+
+        $f->title=$input['title'];
+        $f->coursecode=$input['coursecode'];
+
+        if(isset($input['template'])){
+            $url = Storage::put('course_template', $request->template);
+            $f->template=$url;
+        }
+
+        $f->save();
+
+        return redirect()->route('admin.courses')->with(['success' => "Course modified successfully"]);
+
     }
 
     /**

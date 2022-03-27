@@ -52,8 +52,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('enrollment/{id}', [\App\Http\Controllers\Admin\EnrollmentController::class, 'show'])->name('admin.enrollment.show');
 
         Route::get('courses', [CoursesController::class, 'index'])->name('admin.courses');
+        Route::get('course/{id}', [CoursesController::class, 'show'])->name('admin.course');
         Route::get('courses-create', [CoursesController::class, 'create'])->name('admin.courses_create');
         Route::post('courses-create', [CoursesController::class, 'store'])->name('admin.courses_create');
+        Route::post('courses-update', [CoursesController::class, 'update'])->name('admin.courses_update');
 
         Route::get('mailtemplate', [MailTemplateController::class, 'index'])->name('admin.mailtemplate');
         Route::get('mailtemplate/{id}', [MailTemplateController::class, 'show'])->name('admin.mailtemplate.show');

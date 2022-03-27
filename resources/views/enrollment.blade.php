@@ -87,21 +87,19 @@
                         <h5 class="card-title mb-0">Residence</h5>
                     </div>
                     <div class="card-body">
-                        <select name="country" class="form-select mb-3" required>
-                            <option selected>Select Country<span class="text-danger">*</span></option>
+                        <select name="country" class="form-select mb-3" onchange="getStates(this.value)" required>
+                            <option value="" selected>Select Country<span class="text-danger">*</span></option>
                             @foreach($countries as $country)
-                                <option>{{$country}}</option>
+                                <option value="{{$country->id}}|{{$country->name}}">{{$country->name}}</option>
                             @endforeach
                         </select>
 
-                        <select name="state" class="form-select mb-3" required>
-                            <option selected>Select State<span class="text-danger">*</span></option>
-                            <option>California</option>
+                        <select name="state" class="form-select mb-3" id="state" onchange="getCounty(this.value)" required>
+                            <option value="" selected>Select State<span class="text-danger">*</span></option>
                         </select>
 
-                        <select name="county" class="form-select mb-3" required>
-                            <option selected>Select County<span class="text-danger">*</span></option>
-                            <option>Bush</option>
+                        <select name="county" class="form-select mb-3" id="county" required>
+                            <option value="" selected>Select County<span class="text-danger">*</span></option>
                         </select>
                     </div>
                 </div>
@@ -163,4 +161,56 @@
         </form>
 
     </div>
+
+    <script>
+        function getStates(country)
+        {
+            var countrySP=country.toString().split("|");
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    var response = xmlHttp.responseText;
+                    var rep = JSON.parse(response);
+
+
+                    const sb = document.querySelector('#state');
+
+                    for (let i = 0; i < rep.data.length; i++) {
+                        // create a new option
+                        const option = new Option(rep.data[i].name, rep.data[i].id + "|"+rep.data[i].name);
+                        // add it to the list
+                        sb.add(option, undefined);
+                    }
+                }
+
+            }
+            xmlHttp.open("GET", "https://laravel-world.com/api/states?filters[country_id]="+countrySP[0], true); // true for asynchronous
+            xmlHttp.send(null);
+        }
+
+        function getCounty(state)
+        {
+            var stateSP=state.toString().split("|");
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    var response = xmlHttp.responseText;
+                    var rep = JSON.parse(response);
+
+
+                    const sb = document.querySelector('#county');
+
+                    for (let i = 0; i < rep.data.length; i++) {
+                        // create a new option
+                        const option = new Option(rep.data[i].name, rep.data[i].name);
+                        // add it to the list
+                        sb.add(option, undefined);
+                    }
+                }
+
+            }
+            xmlHttp.open("GET", "https://laravel-world.com/api/cities?filters[state_id]="+stateSP[0], true); // true for asynchronous
+            xmlHttp.send(null);
+        }
+    </script>
 @endsection

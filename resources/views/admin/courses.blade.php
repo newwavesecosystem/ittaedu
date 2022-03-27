@@ -20,6 +20,7 @@
                             <th>Title</th>
                             <th>Course</th>
                             <th>Date Created</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,6 +30,7 @@
                                     <td>{{$data->title}}</td>
                                     <td>{{$data->coursecode}}</td>
                                     <td>{{$data->created_at}}</td>
+                                    <td><a href="{{route('admin.course', $data->id)}}" class="btn btn-success btn-lg">Modify</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

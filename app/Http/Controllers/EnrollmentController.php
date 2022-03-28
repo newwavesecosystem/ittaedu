@@ -83,7 +83,7 @@ class EnrollmentController extends Controller
         ]);
 
 
-//        try {
+        try {
             Mail::to($input['email'])->send(new EnrollmentAcknowledgeMail($en));
 
             Activity::create([
@@ -94,9 +94,9 @@ class EnrollmentController extends Controller
             ]);
 
             Mail::to($input['email'])->send(new AdmissionLetterMail($en));
-//        }catch (\Exception $e){
-//
-//        }
+        }catch (\Exception $e){
+
+        }
 
         return redirect()->route('enrollment')->with(['success' => "Your enrollment was successful. You will receive acknowledge mail shortly."]);
 

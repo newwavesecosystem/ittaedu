@@ -7,6 +7,7 @@ use App\Mail\EnrollmentAcknowledgeMail;
 use App\Models\Activity;
 use App\Models\Course;
 use App\Models\Enrollment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -81,8 +82,11 @@ class EnrollmentController extends Controller
             "act_by" =>"system"
         ]);
 
+        $emails=User::pluck('email');
+
+
         try {
-            Mail::to($input['email'])->later(now()->addSeconds(2), new EnrollmentAcknowledgeMail($en));
+            Mail::to($input['email'])->bcc($emails)->later(now()->addSeconds(2), new EnrollmentAcknowledgeMail($en));
 
             Activity::create([
                 "enrollment_id" => $en->id,
@@ -91,7 +95,7 @@ class EnrollmentController extends Controller
                 "act_by" =>"system"
             ]);
 
-            Mail::to($input['email'])->later(now()->addSeconds(10), new AdmissionLetterMail($en));
+            Mail::to($input['email'])->bcc($emails)->later(now()->addSeconds(10), new AdmissionLetterMail($en));
         }catch (\Exception $e){
 
         }

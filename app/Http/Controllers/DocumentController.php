@@ -39,12 +39,29 @@ class DocumentController extends Controller
         /*@ Reading doc file */
         $template = new \PhpOffice\PhpWord\TemplateProcessor(storage_path($filename));
 
+
+        if(Carbon::now()->format('w') == Carbon::MONDAY){
+            $fourweekMonday=Carbon::now()->addWeeks(4)->format('d M, Y');
+        }else{
+            $fourweekMonday=Carbon::now()->startOfWeek(Carbon::MONDAY)->addWeeks(5)->format('d M, Y');
+        }
+
+        if(Carbon::now()->format('w') == Carbon::SATURDAY){
+            $fourweekSaturday=Carbon::now()->addWeeks(4)->format('d M, Y');
+        }else{
+            $fourweekSaturday=Carbon::now()->startOfWeek(Carbon::MONDAY)->addWeeks(5)->format('d M, Y');
+        }
+
+
+
         /*@ Replacing variables in doc file */
         $template->setValue('name', $enrollment->name);
         $template->setValue('email', $enrollment->email);
         $template->setValue('tel', $enrollment->tel);
         $template->setValue('todaysdate', Carbon::now()->format('d M, Y'));
         $template->setValue('4weeksdate', Carbon::now()->addWeekdays(4)->format('d M, Y'));
+        $template->setValue('4weeksdate_monday', $fourweekMonday);
+        $template->setValue('4weeksdate_saturday', $fourweekSaturday);
 
         $new_filename="app/admissionletter/";
         $new_filename.=str_replace(" ", "",$enrollment->name);

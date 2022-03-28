@@ -43,11 +43,11 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label">File:<span class="text-danger">* doc or docx only</span></label>
+                            <label class="form-label">File:<span class="text-danger">* docx only</span></label>
                             <input type="file" name="template" class="form-control" placeholder="Upload File">
                         </div>
 
-                        <span class="text-success">The system automatically replace the keywords with applicant information in your template: ${name} ${todaysdate} ${lastname} ${email} ${coursename} ${tel} ${4weeksdate} </span>
+                        <span class="text-success">The system automatically replace the keywords with applicant information in your template: ${name} ${todaysdate} ${lastname} ${email} ${coursename} ${tel} ${4weeksdate} ${4weeksdate_monday} ${4weeksdate_saturday} </span>
                     </div>
                 </div>
 

@@ -43,8 +43,8 @@ class DocumentController extends Controller
         $template->setValue('name', $enrollment->name);
         $template->setValue('email', $enrollment->email);
         $template->setValue('tel', $enrollment->tel);
-        $template->setValue('todaysdate', Carbon::now()->format('Y-m-d'));
-        $template->setValue('4weeksdate', Carbon::now()->addWeekdays(4)->format('Y-m-d'));
+        $template->setValue('todaysdate', Carbon::now()->format('d M, Y'));
+        $template->setValue('4weeksdate', Carbon::now()->addWeekdays(4)->format('d M, Y'));
 
         $new_filename="app/admissionletter/";
         $new_filename.=str_replace(" ", "",$enrollment->name);

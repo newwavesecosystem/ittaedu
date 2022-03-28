@@ -20,12 +20,12 @@ class EnrollmentController extends Controller
         $datas['success']=Enrollment::where('status', 1)->count();
         $datas['rejected']=Enrollment::where('status', 2)->count();
         $datas['courses']=Course::count();
-        $datas['datas']=Enrollment::latest()->take(10)->get();
+        $datas['datas']=Enrollment::with('course')->latest()->take(10)->get();
         return view('admin.dashboard', $datas);
     }
 
     public function show($id){
-        $datas['data']=Enrollment::find($id);
+        $datas['data']=Enrollment::with('course')->find($id);
         $datas['data']->activity;
         return view('admin.enrollment', $datas);
     }

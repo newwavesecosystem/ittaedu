@@ -73,7 +73,7 @@
                             <tr>
                                 <td>{{$data->name}}</td>
                                 <td>{{$data->tel}}</td>
-                                <td class="d-none d-xl-table-cell">{{$data->course_id}}</td>
+                                <td class="d-none d-xl-table-cell">{{$data->course->title}}</td>
                                 <td class="d-none d-xl-table-cell">{{$data->suggested_start_date}}</td>
                                 <td class="d-none d-md-table-cell">{{$data->agent}}</td>
                             </tr>

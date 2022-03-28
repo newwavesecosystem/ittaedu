@@ -26,7 +26,7 @@
                         <ul class="list-unstyled mb-0">
                             <li class="mb-1"><span data-feather="home" class="feather-sm me-1"></span> Lives in <a href="#">{{$data->county}} {{$data->state}}, {{$data->country}}</a></li>
 
-                            <li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> Course <a href="#">{{$data->course_id}}</a></li>
+                            <li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> Course <a href="#">{{$data->course->title}}</a></li>
                             <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> Highest Education Level <a href="#">{{$data->highest_education_level}}</a></li>
                             <li class="mb-1"><span data-feather="date" class="feather-sm me-1"></span> Suggested Start Date <a href="#">{{explode(" ",$data->suggested_start_date)[0]}}</a></li>
                         </ul>

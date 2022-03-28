@@ -47,7 +47,7 @@
                             <input type="file" name="template" class="form-control" placeholder="Upload File">
                         </div>
 
-                        <span class="text-success">The system automatically replace the keywords with applicant information in your template: ${name} ${todaysdate} ${lastname} ${email} ${coursename} ${tel} ${4weeksdate} ${4weeksdate_monday} ${4weeksdate_saturday} </span>
+                        <span class="text-success">The system automatically replace the keywords with applicant information in your template: ${name} ${todaysdate} ${lastname} ${email} ${coursename} ${tel} ${4weeksdate} ${4weeksdate_monday} ${4weeksdate_saturday} ${4weeksdate_tuesday} ${4weeksdate_friday} </span>
                     </div>
                 </div>
 

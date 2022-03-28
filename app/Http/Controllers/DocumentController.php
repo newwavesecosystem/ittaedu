@@ -46,10 +46,24 @@ class DocumentController extends Controller
             $fourweekMonday=Carbon::now()->startOfWeek(Carbon::MONDAY)->addWeeks(5)->format('d M, Y');
         }
 
+        if(Carbon::now()->format('w') == Carbon::TUESDAY){
+            $fourweekTuesday=Carbon::now()->addWeeks(4)->format('d M, Y');
+        }else{
+            $fourweekTuesday=Carbon::now()->startOfWeek(Carbon::TUESDAY)->addWeeks(5)->format('d M, Y');
+        }
+
+
+        if(Carbon::now()->format('w') == Carbon::FRIDAY){
+            $fourweekFriday=Carbon::now()->addWeeks(4)->format('d M, Y');
+        }else{
+            $fourweekFriday=Carbon::now()->startOfWeek(Carbon::FRIDAY)->addWeeks(5)->format('d M, Y');
+        }
+
+
         if(Carbon::now()->format('w') == Carbon::SATURDAY){
             $fourweekSaturday=Carbon::now()->addWeeks(4)->format('d M, Y');
         }else{
-            $fourweekSaturday=Carbon::now()->startOfWeek(Carbon::MONDAY)->addWeeks(5)->format('d M, Y');
+            $fourweekSaturday=Carbon::now()->startOfWeek(Carbon::SATURDAY)->addWeeks(5)->format('d M, Y');
         }
 
 
@@ -61,6 +75,8 @@ class DocumentController extends Controller
         $template->setValue('todaysdate', Carbon::now()->format('d M, Y'));
         $template->setValue('4weeksdate', Carbon::now()->addWeekdays(4)->format('d M, Y'));
         $template->setValue('4weeksdate_monday', $fourweekMonday);
+        $template->setValue('4weeksdate_tuesday', $fourweekTuesday);
+        $template->setValue('4weeksdate_friday', $fourweekFriday);
         $template->setValue('4weeksdate_saturday', $fourweekSaturday);
 
         $new_filename="app/admissionletter/";

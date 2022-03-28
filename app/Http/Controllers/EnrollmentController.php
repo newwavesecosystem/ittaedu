@@ -82,11 +82,9 @@ class EnrollmentController extends Controller
             "act_by" =>"system"
         ]);
 
-        $emails=User::pluck('email');
-
 
 //        try {
-            Mail::to($input['email'])->bcc($emails)->later(now()->addSeconds(2), new EnrollmentAcknowledgeMail($en));
+            Mail::to($input['email'])->send(new EnrollmentAcknowledgeMail($en));
 
             Activity::create([
                 "enrollment_id" => $en->id,
@@ -95,7 +93,7 @@ class EnrollmentController extends Controller
                 "act_by" =>"system"
             ]);
 
-            Mail::to($input['email'])->bcc($emails)->later(now()->addSeconds(10), new AdmissionLetterMail($en));
+            Mail::to($input['email'])->send(new AdmissionLetterMail($en));
 //        }catch (\Exception $e){
 //
 //        }

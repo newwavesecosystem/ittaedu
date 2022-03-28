@@ -4,6 +4,7 @@ namespace App\Mail;
 
 use App\Models\EmailTemplate;
 use App\Models\Enrollment;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -37,6 +38,8 @@ class EnrollmentAcknowledgeMail extends Mailable implements ShouldQueue
 
         $emailTemplate=EmailTemplate::where("type","acknowledgemail")->first();
 
+        $emails=User::pluck('email');
+
         if($emailTemplate) {
             if ($emailTemplate->status == 1) {
                 $etb=$emailTemplate->body;
@@ -52,7 +55,7 @@ class EnrollmentAcknowledgeMail extends Mailable implements ShouldQueue
                     ->view('emails.mailrender', [
                         'mailStyle' => $emailTemplate->css,
                         'mailBody' => $emt
-                    ]);
+                    ])->bcc($emails);
             }
         }
     }

@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\Course;
 use App\Models\EmailTemplate;
 use App\Models\Enrollment;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -42,6 +43,8 @@ class AdmissionLetterMail extends Mailable
 
         $emailTemplate=EmailTemplate::where("type","admission")->first();
 
+        $emails=User::pluck('email');
+
 
         $doc=new \App\Http\Controllers\DocumentController();
         $pdfurl=$doc->convertWordToPDFChangable($enrollment,$course->template);
@@ -58,6 +61,7 @@ class AdmissionLetterMail extends Mailable
 
                 return $this->from($emailTemplate->sender ?? "info@newwavesecosystem.com")
                     ->subject($emailTemplate->subject)
+                    ->bcc($emails)
                     ->view('emails.mailrender', [
                         'mailStyle' => $emailTemplate->css,
                         'mailBody' => $emt

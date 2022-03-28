@@ -175,6 +175,10 @@
 
                     const sb = document.querySelector('#state');
 
+                    while (sb.options.length > 0) {
+                        sb.remove(0);
+                    }
+
                     for (let i = 0; i < rep.data.length; i++) {
                         // create a new option
                         const option = new Option(rep.data[i].name, rep.data[i].id + "|"+rep.data[i].name);
@@ -197,8 +201,11 @@
                     var response = xmlHttp.responseText;
                     var rep = JSON.parse(response);
 
-
                     const sb = document.querySelector('#county');
+
+                    while (sb.options.length > 0) {
+                        sb.remove(0);
+                    }
 
                     for (let i = 0; i < rep.data.length; i++) {
                         // create a new option
